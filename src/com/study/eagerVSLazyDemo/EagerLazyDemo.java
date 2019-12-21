@@ -25,6 +25,7 @@ public class EagerLazyDemo {
 			
 			System.out.println("Instructor:" + tempInstructor);
 			//get course for the instructor
+			//Get Courses(lazy fetch) do query again and get courses
 			System.out.println("Courses:" + tempInstructor.getCourses());
 			//commit transaction
 			session.getTransaction().commit();
