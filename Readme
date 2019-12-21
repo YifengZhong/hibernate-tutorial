@@ -6,3 +6,5 @@
 206. Entity Lifecycle relative to Hibernate
 
 207. Cascade Types
+
+232/233. Eager VS Lazy loading
