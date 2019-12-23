@@ -4,7 +4,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteCoursesDemo {
+import com.study.hibernate.demo.entity.Student;
+
+public class GetCoursesAndReviewDemo {
+
 	public static void main(String[] args) {
 		// create session factory
 		SessionFactory factory = new Configuration()
@@ -12,6 +15,7 @@ public class DeleteCoursesDemo {
 				.addAnnotatedClass(Instructor.class)
 				.addAnnotatedClass(InstructorDetail.class)
 				.addAnnotatedClass(Course.class)
+				.addAnnotatedClass(Review.class)
 				.buildSessionFactory();
 		//create session
 		Session session = factory.getCurrentSession();
@@ -19,13 +23,15 @@ public class DeleteCoursesDemo {
 		try {
 			//start a transaction
 			session.beginTransaction();
-			//get a course
-			int theId = 10;
+			// get the course
+			int theId=10;
 			Course tempCourse = session.get(Course.class, theId);
 			
-			//delete course
-			System.out.println("Deleting course: " + tempCourse);
-			session.delete(tempCourse);
+			//print the course
+			System.out.println(tempCourse);
+			System.out.println(tempCourse.getReviews()); 
+			//print the cours reviews
+			
 			session.getTransaction().commit();
 			System.out.println("Done!");
 		} finally {
