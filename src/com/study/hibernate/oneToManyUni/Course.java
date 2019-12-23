@@ -1,4 +1,4 @@
-package com.study.eagerVSLazyDemo;
+package com.study.hibernate.oneToManyUni;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.study.hibernate.oneToManyUni.Review;
 
 @Entity
 @Table(name="course")
@@ -34,10 +32,10 @@ public class Course {
 			CascadeType.REFRESH})
 	@JoinColumn(name="instructor_id")
 	private Instructor instructor;
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private List<Review> reviews;
-	
 	public List<Review> getReviews() {
 		return reviews;
 	}
@@ -68,17 +66,16 @@ public class Course {
 	public void setInstructor(Instructor instructor) {
 		this.instructor = instructor;
 	}
-
 	@Override
 	public String toString() {
-		return "Course [id=" + id + ", title=" + title + ", instructor=" + instructor + ", reviews=" + reviews + "]";
+		return "Course [id=" + id + ", title=" + title + "]";
 	}
-	public void addReview(Review theReview) {
+	
+	public void addReview(Review tempReview) {
 		if(reviews == null) {
 			reviews = new ArrayList<>();
-			
 		}
-		reviews.add(theReview);
+		reviews.add(tempReview);
 	}
 	//define constructors
 	
