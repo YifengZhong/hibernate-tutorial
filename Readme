@@ -8,3 +8,5 @@
 207. Cascade Types
 
 232/233. Eager VS Lazy loading
+
+249. @ManyToMany JoinTable
